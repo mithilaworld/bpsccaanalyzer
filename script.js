@@ -12,7 +12,7 @@ analyzeBtn.addEventListener("click", async () => {
     document.getElementById("score").innerHTML = "Analyzing...";
     document.getElementById("decision").innerHTML = "Please wait...";
     document.getElementById("confidence").innerHTML = "...";
-    document.getElementById("mcq").innerHTML = "Generating...";
+    document.getElementById("mcq").innerHTML = "Loading...";
     document.getElementById("static").innerHTML = "Loading...";
 
     try {
@@ -29,12 +29,33 @@ analyzeBtn.addEventListener("click", async () => {
 
         const data = await response.json();
 
-        document.getElementById("score").innerHTML =
-            data.success ? "Connected ✅" : "Failed ❌";
+        console.log(data);
 
-        document.getElementById("decision").innerHTML =
-            data.message || "";
+        // Gemini Raw Response
+        const text =
+            data.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
 
+        document.getElementById("score").innerHTML = "AI Connected ✅";
+        document.getElementById("decision").innerHTML = "Gemini Working";
+        document.getElementById("confidence").innerHTML = "100%";
+
+        document.getElementById("mcq").innerHTML =
+            `<pre>${text}</pre>`;
+
+        document.getElementById("static").innerHTML =
+            "Gemini Response Received";
+
+    } catch (err) {
+
+        document.getElementById("score").innerHTML = "Error";
+        document.getElementById("decision").innerHTML = err.message;
+        document.getElementById("confidence").innerHTML = "-";
+        document.getElementById("mcq").innerHTML = "-";
+        document.getElementById("static").innerHTML = "-";
+
+    }
+
+});
         document.getElementById("confidence").innerHTML =
             data.apiKeyLoaded ? "API Key Loaded ✅" : "API Key Missing ❌";
 
