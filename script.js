@@ -29,21 +29,24 @@ analyzeBtn.addEventListener("click", async () => {
 
         const data = await response.json();
 
-        console.log(data);
+        document.getElementById("score").innerHTML = data.score;
+        document.getElementById("decision").innerHTML = data.decision;
+        document.getElementById("confidence").innerHTML = data.confidence;
 
-        // Gemini Raw Response
-        const text =
-            data.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
+        document.getElementById("mcq").innerHTML = `
+            <b>${data.mcq}</b><br><br>
+            ${data.options.join("<br><br>")}
+            <br><br>
+            <b>Answer:</b> ${data.answer}
+            <br><br>
+            <b>Explanation:</b><br>
+            ${data.explanation}
+        `;
 
-        document.getElementById("score").innerHTML = "AI Connected ✅";
-        document.getElementById("decision").innerHTML = "Gemini Working";
-        document.getElementById("confidence").innerHTML = "100%";
-
-        document.getElementById("mcq").innerHTML =
-            `<pre>${text}</pre>`;
-
-        document.getElementById("static").innerHTML =
-            "Gemini Response Received";
+        document.getElementById("static").innerHTML = `
+            <b>Static Facts</b><br><br>
+            ${data.staticFacts.join("<br>")}
+        `;
 
     } catch (err) {
 
@@ -52,23 +55,6 @@ analyzeBtn.addEventListener("click", async () => {
         document.getElementById("confidence").innerHTML = "-";
         document.getElementById("mcq").innerHTML = "-";
         document.getElementById("static").innerHTML = "-";
-
-    }
-
-});
-        document.getElementById("confidence").innerHTML =
-            data.apiKeyLoaded ? "API Key Loaded ✅" : "API Key Missing ❌";
-
-        document.getElementById("mcq").innerHTML =
-            data.receivedNews || "";
-
-        document.getElementById("static").innerHTML =
-            "Frontend → Worker Connected";
-
-    } catch (err) {
-
-        document.getElementById("score").innerHTML = "Error";
-        document.getElementById("decision").innerHTML = err.message;
 
     }
 
