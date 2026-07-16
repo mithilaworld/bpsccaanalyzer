@@ -1,24 +1,54 @@
-
 const analyzeBtn = document.getElementById("analyze");
 
-analyzeBtn.addEventListener("click", function () {
+analyzeBtn.addEventListener("click", async () => {
 
-    const news = document.getElementById("news").value;
+    const news = document.getElementById("news").value.trim();
 
-    if(news.trim()==""){
+    if (!news) {
         alert("Please paste a news first.");
         return;
     }
 
-    document.getElementById("score").innerHTML="18 /20";
+    document.getElementById("score").innerHTML = "Analyzing...";
+    document.getElementById("decision").innerHTML = "Please wait...";
+    document.getElementById("confidence").innerHTML = "...";
+    document.getElementById("mcq").innerHTML = "Generating...";
+    document.getElementById("static").innerHTML = "Loading...";
 
-    document.getElementById("decision").innerHTML="🔥 Must Read";
+    try {
 
-    document.getElementById("confidence").innerHTML="🟢 High";
+        const response = await fetch("https://bpscaibackend.maithiligeetstore.workers.dev", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                news: news
+            })
+        });
 
-    document.getElementById("mcq").innerHTML=
-    "Q. This news belongs to which category?<br><br>A. Economy<br>B. Environment<br>C. International<br>D. Science";
+        const data = await response.json();
 
-    document.getElementById("static").innerHTML=
-    "Static Facts will be generated here using Gemini AI.";
+        document.getElementById("score").innerHTML =
+            data.success ? "Connected ✅" : "Failed ❌";
+
+        document.getElementById("decision").innerHTML =
+            data.message || "";
+
+        document.getElementById("confidence").innerHTML =
+            data.apiKeyLoaded ? "API Key Loaded ✅" : "API Key Missing ❌";
+
+        document.getElementById("mcq").innerHTML =
+            data.receivedNews || "";
+
+        document.getElementById("static").innerHTML =
+            "Frontend → Worker Connected";
+
+    } catch (err) {
+
+        document.getElementById("score").innerHTML = "Error";
+        document.getElementById("decision").innerHTML = err.message;
+
+    }
+
 });
