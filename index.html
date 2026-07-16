@@ -1,9 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>BPSC CA Analyzer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BPSC CA Analyzer AI</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<h1>BPSC CA Analyzer</h1>
+
+<div class="container">
+
+    <h1>BPSC CA Analyzer AI</h1>
+
+    <p class="subtitle">
+        Paste your PIB / Newspaper News below
+    </p>
+
+    <textarea
+        id="news"
+        placeholder="Paste Current Affairs News Here..."
+    ></textarea>
+
+    <button id="analyze">
+        Analyze News
+    </button>
+
+    <div class="result">
+
+        <div class="card">
+            <h2>BPSC Score</h2>
+            <p id="score">-- /20</p>
+        </div>
+
+        <div class="card">
+            <h2>Decision</h2>
+            <p id="decision">Waiting...</p>
+        </div>
+
+        <div class="card">
+            <h2>Confidence</h2>
+            <p id="confidence">--</p>
+        </div>
+
+        <div class="card">
+            <h2>MCQ</h2>
+            <p id="mcq">Result will appear here...</p>
+        </div>
+
+        <div class="card">
+            <h2>Static Facts</h2>
+            <p id="static">
+                Result will appear here...
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
