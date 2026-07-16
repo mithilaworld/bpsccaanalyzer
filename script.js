@@ -5,12 +5,12 @@ analyzeBtn.addEventListener("click", async () => {
     const news = document.getElementById("news").value.trim();
 
     if (!news) {
-        alert("Please paste a news first.");
+        alert("Please paste Current Affairs News.");
         return;
     }
 
-    document.getElementById("score").innerHTML = "Analyzing...";
-    document.getElementById("decision").innerHTML = "Please wait...";
+    document.getElementById("score").innerHTML = "Loading...";
+    document.getElementById("decision").innerHTML = "Analyzing...";
     document.getElementById("confidence").innerHTML = "...";
     document.getElementById("mcq").innerHTML = "Loading...";
     document.getElementById("static").innerHTML = "Loading...";
@@ -29,24 +29,19 @@ analyzeBtn.addEventListener("click", async () => {
 
         const data = await response.json();
 
+        console.log(data);
+
         document.getElementById("score").innerHTML = data.score;
         document.getElementById("decision").innerHTML = data.decision;
         document.getElementById("confidence").innerHTML = data.confidence;
 
         document.getElementById("mcq").innerHTML = `
             <b>${data.mcq}</b><br><br>
-            ${data.options.join("<br><br>")}
-            <br><br>
-            <b>Answer:</b> ${data.answer}
-            <br><br>
-            <b>Explanation:</b><br>
-            ${data.explanation}
+            ${data.options.join("<br>")}
         `;
 
-        document.getElementById("static").innerHTML = `
-            <b>Static Facts</b><br><br>
-            ${data.staticFacts.join("<br>")}
-        `;
+        document.getElementById("static").innerHTML =
+            data.staticFacts.join("<br>");
 
     } catch (err) {
 
