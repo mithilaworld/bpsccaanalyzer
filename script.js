@@ -1,3 +1,4 @@
+
 const analyzeBtn = document.getElementById("analyze");
 
 analyzeBtn.addEventListener("click", async () => {
@@ -17,23 +18,20 @@ analyzeBtn.addEventListener("click", async () => {
 
     try {
 
-        const response = await fetch("https://bpscaibackend.maithiligeetstore.workers.dev", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                news: news
-            })
-        });
+        const response = await fetch(
+            "https://bpscaibackend.maithiligeetstore.workers.dev",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    news: news
+                })
+            }
+        );
 
-        const text = await response.text();
-
-console.log(text);
-
-alert(text);
-
-return;
+        const data = await response.json();
 
         console.log(data);
 
@@ -43,11 +41,34 @@ return;
 
         document.getElementById("mcq").innerHTML = `
             <b>${data.mcq}</b><br><br>
+
             ${data.options.join("<br>")}
+
+            <br><br>
+
+            <b>Answer:</b> ${data.answer}
+
+            <br><br>
+
+            <b>Explanation:</b><br>
+            ${data.explanation}
         `;
 
-        document.getElementById("static").innerHTML =
-            data.staticFacts.join("<br>");
+        document.getElementById("static").innerHTML = `
+            <b>Static Facts</b><br><br>
+
+            ${data.staticFacts.join("<br><br>")}
+
+            <br><br>
+
+            <b>Previous Year Question</b><br>
+            ${data.pyq}
+
+            <br><br>
+
+            <b>Tags</b><br>
+            ${data.tags.join(", ")}
+        `;
 
     } catch (err) {
 
