@@ -41,7 +41,7 @@ analyzeBtn.addEventListener("click", async () => {
         document.getElementById("mcq").innerHTML = `
             <b>${data.mcq}</b><br><br>
 
-            ${data.options.join("<br>")}
+        ${(data.options || []).join("<br>")}
 
             <br><br>
 
@@ -56,7 +56,7 @@ analyzeBtn.addEventListener("click", async () => {
         document.getElementById("static").innerHTML = `
             <b>Static Facts</b><br><br>
 
-            ${data.staticFacts.join("<br><br>")}
+            ${(data.staticFacts || []).join("<br><br>")}
 
             <br><br>
 
@@ -66,7 +66,7 @@ analyzeBtn.addEventListener("click", async () => {
             <br><br>
 
             <b>Tags</b><br>
-            ${data.tags.join(", ")}
+            ${(data.tags || []).join(", ")}
         `;
 
     } catch (err) {
