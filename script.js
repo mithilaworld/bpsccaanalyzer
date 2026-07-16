@@ -1,4 +1,3 @@
-
 const analyzeBtn = document.getElementById("analyze");
 
 analyzeBtn.addEventListener("click", async () => {
