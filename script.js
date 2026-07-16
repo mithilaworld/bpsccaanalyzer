@@ -31,13 +31,9 @@ analyzeBtn.addEventListener("click", async () => {
             }
         );
 
-        const text = await response.text();
-console.log(text);
-
-const data = JSON.parse(text);
+        const data = await response.json();
 
         console.log(data);
-        alert(JSON.stringify(data));
 
         document.getElementById("score").innerHTML = data.score;
         document.getElementById("decision").innerHTML = data.decision;
