@@ -27,7 +27,13 @@ analyzeBtn.addEventListener("click", async () => {
             })
         });
 
-        const data = await response.json();
+        const text = await response.text();
+
+console.log(text);
+
+alert(text);
+
+return;
 
         console.log(data);
 
