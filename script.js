@@ -33,6 +33,7 @@ analyzeBtn.addEventListener("click", async () => {
         const data = await response.json();
 
         console.log(data);
+        alert(JSON.stringify(data));
 
         document.getElementById("score").innerHTML = data.score;
         document.getElementById("decision").innerHTML = data.decision;
