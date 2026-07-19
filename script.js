@@ -77,7 +77,61 @@ analyzeBtn.addEventListener("click", async () => {
         document.getElementById("confidence").innerHTML = "-";
         document.getElementById("mcq").innerHTML = "-";
         document.getElementById("static").innerHTML = "-";
+        
+// ===================
+// BPSC MAINS ANALYSIS
+// ===================
 
+document.getElementById("gsPaper").innerHTML =
+    data.gsPaper || "-";
+
+document.getElementById("mainsRelevant").innerHTML =
+    data.mainsRelevant || "-";
+
+document.getElementById("mainsQuestion").innerHTML =
+    data.mainsQuestion || "-";
+
+document.getElementById("intro").innerHTML =
+    data.answerFramework?.introduction || "-";
+
+document.getElementById("bodyPoints").innerHTML =
+    (data.answerFramework?.body || [])
+        .map(item => `<li>${item}</li>`)
+        .join("");
+
+document.getElementById("biharPerspective").innerHTML =
+    data.answerFramework?.biharPerspective || "-";
+
+document.getElementById("wayForward").innerHTML =
+    data.answerFramework?.wayForward || "-";
+
+document.getElementById("conclusion").innerHTML =
+    data.answerFramework?.conclusion || "-";
+
+document.getElementById("keywords").innerHTML =
+    (data.keywords || [])
+        .map(item => `<li>${item}</li>`)
+        .join("");
+
+document.getElementById("articles").innerHTML =
+    (data.valueAddition?.articles || [])
+        .map(item => `<li>${item}</li>`)
+        .join("");
+
+document.getElementById("schemes").innerHTML =
+    (data.valueAddition?.schemes || [])
+        .map(item => `<li>${item}</li>`)
+        .join("");
+
+document.getElementById("reports").innerHTML =
+    (data.valueAddition?.reports || [])
+        .map(item => `<li>${item}</li>`)
+        .join("");
+
+document.getElementById("dataPoints").innerHTML =
+    (data.valueAddition?.data || [])
+        .map(item => `<li>${item}</li>`)
+        .join("");
     }
 
 });
