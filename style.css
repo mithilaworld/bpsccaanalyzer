@@ -107,3 +107,88 @@ height:180px;
 }
 
 }
+/* ========================= */
+/* BPSC MAINS ANALYSIS */
+/* ========================= */
+
+#mainsCard{
+margin-top:30px;
+padding:25px;
+background:#ffffff;
+border:2px solid #10a37f;
+border-radius:18px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+#mainsCard h2{
+text-align:center;
+font-size:26px;
+margin-bottom:20px;
+color:#10a37f;
+}
+
+#mainsCard h3{
+margin-top:20px;
+margin-bottom:8px;
+font-size:18px;
+color:#222;
+border-left:5px solid #10a37f;
+padding-left:10px;
+}
+
+#mainsCard p{
+line-height:1.8;
+font-size:16px;
+color:#444;
+}
+
+#mainsCard ul{
+margin-top:8px;
+margin-left:22px;
+margin-bottom:15px;
+}
+
+#mainsCard li{
+margin-bottom:8px;
+line-height:1.7;
+}
+
+#bodyPoints li{
+background:#f4fdf9;
+padding:10px;
+border-radius:8px;
+margin-bottom:10px;
+}
+
+#keywords li,
+#articles li,
+#schemes li,
+#reports li,
+#dataPoints li{
+background:#f8f8f8;
+padding:8px 10px;
+border-radius:8px;
+margin-bottom:8px;
+list-style:disc;
+}
+
+@media(max-width:600px){
+
+#mainsCard{
+padding:18px;
+}
+
+#mainsCard h2{
+font-size:22px;
+}
+
+#mainsCard h3{
+font-size:16px;
+}
+
+#mainsCard p,
+#mainsCard li{
+font-size:15px;
+}
+
+}
