@@ -34,7 +34,9 @@ analyzeBtn.addEventListener("click", async () => {
 
         console.log(data);
         alert(JSON.stringify(data));
-
+        
+console.log(data.gsPaper);
+alert(data.gsPaper);
         document.getElementById("score").innerHTML = data.score;
         document.getElementById("decision").innerHTML = data.decision;
         document.getElementById("confidence").innerHTML = data.confidence;
