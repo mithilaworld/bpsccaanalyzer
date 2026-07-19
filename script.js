@@ -69,14 +69,6 @@ analyzeBtn.addEventListener("click", async () => {
             <b>Tags</b><br>
             ${data.tags.join(", ")}
         `;
-
-    } catch (err) {
-
-        document.getElementById("score").innerHTML = "Error";
-        document.getElementById("decision").innerHTML = err.message;
-        document.getElementById("confidence").innerHTML = "-";
-        document.getElementById("mcq").innerHTML = "-";
-        document.getElementById("static").innerHTML = "-";
         
 // ===================
 // BPSC MAINS ANALYSIS
@@ -132,6 +124,14 @@ document.getElementById("dataPoints").innerHTML =
     (data.valueAddition?.data || [])
         .map(item => `<li>${item}</li>`)
         .join("");
+    } catch (err) {
+
+        document.getElementById("score").innerHTML = "Error";
+        document.getElementById("decision").innerHTML = err.message;
+        document.getElementById("confidence").innerHTML = "-";
+        document.getElementById("mcq").innerHTML = "-";
+        document.getElementById("static").innerHTML = "-";
+        
     }
 
 });
